@@ -1,3 +1,5 @@
+from .JanusVLN.src import evaluation, dagger
+
 class JanusVLN:
     def get_docs():
         return """
