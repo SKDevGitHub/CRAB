@@ -1,8 +1,10 @@
 from .JanusVLN.src import evaluation, dagger
 
 class JanusVLN:
-    def get_docs():
-        return """
+    def print_docs():
+        print
+        (
+        """
         --JanusVLN--
 
         A vision-language-navigation model.
@@ -14,4 +16,5 @@ class JanusVLN:
         Models:          https://www.modelscope.cn/models/misstl/JanusVLN_Base
                          https://www.modelscope.cn/models/misstl/JanusVLN_Extra
         """
+        )
     
