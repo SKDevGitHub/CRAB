@@ -58,3 +58,38 @@ Here are the specific requirements:
 6. Make a `README.md` file next to your `__init__.py` and link the relevant research papers, project page, github, HuggingFace datasets, etc. If there are any **extra steps** necessary to get your code working, document them here. By **extra steps**, we mean anything you couldn't specify in a `pyproject.toml` config file.
 
 7. By this step you have created a `pip` package. In the folder you made in step 2, create a `pyproject.toml` for it, and specify package dependencies.
+
+To use an algorithm, install its package with `pip install -e PATH`, where `PATH` is the directory that contains its `pyproject.toml`.
+
+### Simulators
+
+1. Decide what you want the interface for accessing your simulator to be called. Use `CamelCase`.
+
+- For example, if I was setting up an RL environment for teaching the G1 to balance using dense rewards, I'd use a name like: `G1BalanceDense`
+
+2. Make a directory in the `sim_and_algo_code` directory and name it using the interface name you created in the previous step.
+
+- For example: `mkdir sim_and_algo_code/G1BalanceDense`
+
+3. In the directory you just made, create a directory called `CRAB/sim/NAME` or `CRAB/sim/CATEGORY/NAME`, replacing `NAME` with the interface name from step 1, and `CATEGORY` with some category of simulator for organization purposes (optional).
+
+- For example: `CRAB/sim/G1BalanceDense` or `CRAB/sim/RL/G1BalanceDense`
+
+4. The directory you made in step 3 should store all the code necessary to run the simulator in question. Use a Git submodule if relying on somebody else's code. If not, then happy coding!
+
+- Organize your implementation into subdirectories as needed.
+
+- Keep track of any required dependencies. You will need to know them for steps 6 and 7.
+
+5. Make an `__init__.py` file in the directory you created in step 3. In this file, wrap all of your simulator's functionality inside a single class. This class should be named using the interface name you created in step 1.
+
+- Inherit from `CRAB.Simulator` and implement all virtual functions. You **must** call `super().__init__()` and pass in the required `headless` parameter.
+
+- Document your wrapper class! Make sure that readers can replicate your simulator easily by following your instructions.
+
+6. Make a `README.md` file next to your `__init__.py` and link any relevant research papers, project page, github, HuggingFace datasets, etc. If there are any **extra steps** necessary to get your code working, document them here. By **extra steps**, we mean anything you couldn't specify in a `pyproject.toml` config file.
+
+7. By this step you have created a `pip` package. In the folder you made in step 2, create a `pyproject.toml` for it, and specify package dependencies.
+
+### Datasets
+
