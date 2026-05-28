@@ -11,8 +11,8 @@ spec:
       
       restartPolicy: OnFailure # Jobs require OnFailure or Never, not Always
       
-      securityContext: # starts you as worker
-        runAsUser: 1000
+      securityContext: # starts you as ROOT!
+        runAsUser: 0
         runAsGroup: 1000
         fsGroup: 1000
       

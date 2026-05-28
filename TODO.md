@@ -1,4 +1,3 @@
 - Add HF_HOME env var to Dockerfile
-- Add Dockerfile
-- Copy Michaels workflow, but change so that it only runs when Dockerfile changes
+- Need to access apt in pod
 - Migrate to new contexts and Jobs instead of deployments
