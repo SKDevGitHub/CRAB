@@ -104,4 +104,4 @@ Everybody should use the same huggingface cache for models and datasets. Set you
 
 The GPU cluster uses Kubernetes. To run programs/computations, you will need a **pod**. For those unfamiliar, a pod is basically a Docker/Podman container. Running pods directly is possible, but not allowed on our cluster. You will need to run a **job**, which will create one or more pods. Read about pods and jobs in the Kubernetes docs if you need more detailed info.
 
-There's a template job for the robotics lab at `kubernetes_setup/robot-team-job.yaml`, which creates a container built from specifications in the `kubernetes/robot-team-image` submodule/directory.
+There's a template job for the robotics lab at `kubernetes_setup/robot-team-job.yaml`, which creates a container built from specifications in the `kubernetes/robot-team-image-template` submodule/directory.
