@@ -1,0 +1,64 @@
+# Kubernetes job template for robot team
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: robot-team-eliot # name of pod for job followed by hash
+  namespace: workspace-crab # your namespace, don't change
+spec:
+  ttlSecondsAfterFinished: 86400  # Auto-cleanup after 24 hours, adjust as needed
+  template:
+    spec:
+      restartPolicy: OnFailure     # Jobs require OnFailure or Never, not Always
+      securityContext: # starts you as worker
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+      imagePullSecrets:
+        - name: ghcr-secret # lets you pull the image from the private repository
+      containers:
+        - name: robot-team # internal name of the container
+          image: ghcr.io/mikethebuddy/robot-team-image:latest # docker image with verison
+          imagePullPolicy: Always
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+          ports:
+            - containerPort: 5900
+              name: vnc
+          volumeMounts:
+            - name: worker-eliot # home mount
+              mountPath: /home/worker
+            - name: crab-shared # /CRAB mount
+              mountPath: /CRAB
+            - name: crab-datasets # /CRAB/datasets mount
+              mountPath: /CRAB/datasets
+            - name: gitconfig
+              mountPath: /home/worker/.gitconfig
+              subPath: .gitconfig
+            - name: git-keys
+              mountPath: /home/worker/.ssh
+              readOnly: true
+          resources: # specify gpu requests here - be reasonable
+            limits:
+              nvidia.com/gpu: 1
+            requests:
+              nvidia.com/gpu: 1
+      volumes:
+        - name: worker-eliot
+          persistentVolumeClaim:
+            claimName: worker-eliot
+        - name: crab-shared
+          persistentVolumeClaim:
+            claimName: crab-shared
+        - name: crab-datasets
+          persistentVolumeClaim:
+            claimName: crab-datasets
+        - name: gitconfig
+          configMap:
+            name: gitconfig-eliot
+        - name: git-keys
+          secret:
+              secretName: eliot-keys
+              defaultMode: 0600  # SSH requires strict permissions

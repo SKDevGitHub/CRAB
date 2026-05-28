@@ -4,3 +4,6 @@
 [submodule "sim_and_algo_code/JanusVLN/CRAB/algo/JanusVLN/JanusVLN"]
 	path = sim_and_algo_code/JanusVLN/CRAB/algo/JanusVLN/JanusVLN
 	url = https://github.com/MIV-XJTU/JanusVLN
+[submodule "kubernetes_setup/robot-team-image"]
+	path = kubernetes_setup/robot-team-image
+	url = git@github.com:MikeTheBuddy/robot-team-image.git

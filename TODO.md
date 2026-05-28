@@ -1,4 +1,4 @@
 - Add HF_HOME env var to Dockerfile
 - Add Dockerfile
-- Add keys so we can push to the repo
-- Git global settings
+- Copy Michaels workflow, but change so that it only runs when Dockerfile changes
+- Migrate to new contexts and Jobs instead of deployments
