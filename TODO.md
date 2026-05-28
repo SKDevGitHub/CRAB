@@ -1,0 +1,4 @@
+- Add HF_HOME env var to Dockerfile
+- Add Dockerfile
+- Add keys so we can push to the repo
+- Git global settings

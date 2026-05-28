@@ -89,7 +89,13 @@ To use an algorithm, install its package with `pip install -e PATH`, where `PATH
 
 6. Make a `README.md` file next to your `__init__.py` and link any relevant research papers, project page, github, HuggingFace datasets, etc. If there are any **extra steps** necessary to get your code working, document them here. By **extra steps**, we mean anything you couldn't specify in a `pyproject.toml` config file.
 
-7. By this step you have created a `pip` package. In the folder you made in step 2, create a `pyproject.toml` for it, and specify package dependencies. `CRAB.sim.Simulator` is a required dependency.
+7. By this step you have created a `pip` package. In the folder you made in step 2, create a `pyproject.toml` for it, and specify package dependencies. To source the base class `Simulator` as a dependency:
+```
+dependencies = [
+    "Simulator @ file:../Simulator"
+]
+```
 
-### Datasets
+### Datasets and Large Pretrained Models
 
+Everybody should use the same huggingface cache for models and datasets. Set your `HF_HOME` environment variable to point to the `datasets` directory on the cluster. This should be done automatically for you if you use the container setup in this repo.
