@@ -47,11 +47,11 @@ spec:
               mountPath: /CRAB/datasets
 
             - name: gitconfig # persistent git settings
-              mountPath: /home/worker/.gitconfig
+              mountPath: /root/.gitconfig
               subPath: .gitconfig
 
             - name: git-keys # your personal SSH/GPG keys
-              mountPath: /home/worker/.ssh
+              mountPath: /root/.ssh
               readOnly: true
 
           resources: # specify gpu requests here - be reasonable
