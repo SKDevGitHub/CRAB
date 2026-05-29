@@ -40,10 +40,6 @@ spec:
             - name: crab-datasets # large shared volume mount for datasets and large pretrained models
               mountPath: /CRAB/datasets
 
-            - name: gitconfig # persistent git settings
-              mountPath: /home/worker/.gitconfig
-              subPath: .gitconfig
-
             - name: git-keys # your personal SSH/GPG keys
               mountPath: /home/worker/.ssh
               readOnly: true
@@ -66,10 +62,6 @@ spec:
         - name: crab-datasets # large shared volume mount for datasets and large pretrained models
           persistentVolumeClaim:
             claimName: crab-datasets
-
-        - name: gitconfig # persistent git settings
-          configMap:
-            name: gitconfig-yourname
 
         - name: git-keys # your personal SSH/GPG keys
           secret:
