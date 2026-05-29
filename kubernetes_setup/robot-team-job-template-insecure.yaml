@@ -12,9 +12,9 @@ spec:
       
       restartPolicy: OnFailure # Jobs require OnFailure or Never, not Always
       
-      securityContext: # starts you as ROOT!
-        runAsUser: 0
-        runAsGroup: 0
+      securityContext: # starts you as worker
+        runAsUser: 1000
+        runAsGroup: 1000
       
       imagePullSecrets:
         - name: ghcr-secret # lets you pull the image from the private repository
@@ -41,11 +41,11 @@ spec:
               mountPath: /CRAB/datasets
 
             - name: gitconfig # persistent git settings
-              mountPath: /root/.gitconfig
+              mountPath: /home/worker/.gitconfig
               subPath: .gitconfig
 
             - name: git-keys # your personal SSH/GPG keys
-              mountPath: /root/.ssh
+              mountPath: /home/worker/.ssh
               readOnly: true
 
           resources: # specify gpu requests here - be reasonable
