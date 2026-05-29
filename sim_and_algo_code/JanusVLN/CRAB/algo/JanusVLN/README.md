@@ -18,3 +18,6 @@ https://www.modelscope.cn/datasets/misstl/JanusVLN_Trajectory_Data
 Models: 
 https://www.modelscope.cn/models/misstl/JanusVLN_Base
 https://www.modelscope.cn/models/misstl/JanusVLN_Extra
+
+Extra Instructions:
+- Installations Needed: MiniConda
