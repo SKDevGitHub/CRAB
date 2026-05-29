@@ -13,8 +13,7 @@ spec:
       
       securityContext: # starts you as ROOT!
         runAsUser: 0
-        runAsGroup: 1000
-        fsGroup: 1000
+        runAsGroup: 0
       
       imagePullSecrets:
         - name: ghcr-secret # lets you pull the image from the private repository
@@ -24,12 +23,6 @@ spec:
         - name: robot-team # internal name of the container
           image: ghcr.io/mikethebuddy/robot-team-image:latest # docker image with verison
           imagePullPolicy: Always
-          
-          env:
-            - name: PUID
-              value: "1000"
-            - name: PGID
-              value: "1000"
           
           ports:
             - containerPort: 5900
