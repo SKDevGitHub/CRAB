@@ -21,11 +21,6 @@ The `datasets` directory is stored on a separate volume mount from the rest of t
 
 ## How to Contribute
 
-### Datasets
-
-- Store datasets and large DNN ("AI") models in the `datasets` directory, but **don't `git commit` them**.
-- TODO: Specify exactly how to use HF interface
-
 ### Algorithms
 
 If you copy the format of `JanusVLN`, you are ~90% done already.
@@ -99,6 +94,8 @@ dependencies = [
 ### Datasets and Large Pretrained Models
 
 Everybody should use the same huggingface cache for models and datasets. Set your `HF_HOME` environment variable to point to the `datasets` directory on the cluster. This should be done automatically for you if you use the container setup in this repo.
+
+And remember: never `git commit` stuff in the `datasets` directory!
 
 ### Kubernetes Setup
 
