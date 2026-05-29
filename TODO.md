@@ -5,9 +5,9 @@
 - get VNC working, viewing a sim should be as simple as running it in an xterm in the openbox WM in your pod
 
 - document kubectl setup on client (laptop), how to do port-forwarding, how to setup iptables routing for G1
+    - explain volume mount: location, purpose
 
 - have a fresh pair of eyes try to replicate a basic sim/algorithm combination, including all the cluster setup steps, and identify the toughest parts of the setup
-    - goal: 
 
 - need to standardize interface into G1 for testing
     - understand low-level control mechanism from a technical perspective
@@ -22,3 +22,7 @@
     - low-level whole-body control
     - low-level upper body control while default locomotion controlls lower
     - include hands
+
+- need secure container/job for running stuff on the actual robot
+    - keep insecure setup for non-robot use case, root access is convenient for prototyping
+    - document the difference between the secure and non secure container setup, and the necessity of both
