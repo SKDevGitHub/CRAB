@@ -1,0 +1,3 @@
+- need to change git setting core.sshCommand to reflect non-standard ssh key name
+    - git config --global core.sshCommand "ssh -i ~/.ssh/id_ed25519_eliot"
+    - change the .gitconfig volume mount
