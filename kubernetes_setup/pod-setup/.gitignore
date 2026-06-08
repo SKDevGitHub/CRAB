@@ -1,0 +1,3 @@
+# Pod files - ignore user-specific pods but keep the template
+pod-*.yaml
+!pod-template.yaml

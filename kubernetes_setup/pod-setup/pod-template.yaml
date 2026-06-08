@@ -1,0 +1,57 @@
+# pod-<USERNAME>.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: robot-team-<USERNAME>
+  namespace: workspace-crab
+spec:
+  restartPolicy: Always
+  securityContext:
+    runAsUser: 0
+    runAsGroup: 1000
+    fsGroup: 1000
+  imagePullSecrets:
+    - name: ghcr-secret
+  containers:
+    - name: robot-team
+      image: ghcr.io/mikethebuddy/robot-team-image:latest
+      imagePullPolicy: Always
+      env:
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
+      ports:
+        - containerPort: 5900
+          name: vnc
+      volumeMounts:
+        - name: worker-<USERNAME>
+          mountPath: /home/worker
+        - name: crab-shared
+          mountPath: /CRAB
+        - name: crab-shared
+          mountPath: /opt/miniconda3/envs
+        - name: crab-datasets
+          mountPath: /CRAB/datasets
+        - name: git-keys
+          mountPath: /home/worker/.ssh
+          readOnly: true
+      resources:
+        limits:
+          nvidia.com/gpu: 1
+        requests:
+          nvidia.com/gpu: 1
+  volumes:
+    - name: worker-<USERNAME>
+      persistentVolumeClaim:
+        claimName: worker-<USERNAME>
+    - name: crab-shared
+      persistentVolumeClaim:
+        claimName: crab-shared
+    - name: crab-datasets
+      persistentVolumeClaim:
+        claimName: crab-datasets
+    - name: git-keys
+      secret:
+        secretName: <USERNAME>-keys
+        defaultMode: 0600
