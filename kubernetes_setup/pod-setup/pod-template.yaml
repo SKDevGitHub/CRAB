@@ -21,6 +21,8 @@ spec:
           value: "1000"
         - name: PGID
           value: "1000"
+        - name: NVIDIA_DRIVER_CAPABILITIES
+          value: "compute,utility,display,graphics"
       ports:
         - containerPort: 5900
           name: vnc
@@ -39,8 +41,12 @@ spec:
       resources:
         limits:
           nvidia.com/gpu: 1
+          cpu: "24"
+          memory: "128Gi"
         requests:
           nvidia.com/gpu: 1
+          cpu: "12"
+          memory: "32Gi"
   volumes:
     - name: worker-<USERNAME>
       persistentVolumeClaim:
